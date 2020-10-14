@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <Aaa/>
+<div>
+  导航栏
+  |
+  <router-link to="/">Aaa</router-link>
+  <router-link to="/xxx">Bbb</router-link>
+</div>
+<router-view></router-view>
 </template>
 
 <script>
-import Aaa from './components/Aaa.vue'
-
 export default {
-    name: 'App',
-    components: {
-      Aaa
-    }
+  name: 'App'
 }
 </script>
