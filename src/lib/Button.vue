@@ -1,17 +1,16 @@
 <template>
-  <div>
-    <button v-bind="rest">
-      <slot />
-    </button>
-  </div>
+  <button class="gulu-button"
+          :class="{[`theme-${theme}`]:theme}">
+    <slot />
+  </button>
 </template>
 <script lang="ts">
 export default {
-  // 继承属性改为 false, 这样 div就不会再有 外面绑定的事件了
-  inheritAttrs: false,
-  setup(porps, context) {
-    const { size, ...rest } = context.attrs
-    return { size, rest }
+  props: {
+    theme: {
+      type: String,
+      default: 'button',
+    },
   },
 }
 </script>
