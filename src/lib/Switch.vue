@@ -12,7 +12,17 @@ export default {
   setup(props, context) {
     const checked = ref(false)
     const toggle = () => {
-      context.emit('input', !props.value)
+      /* v-model 尤雨溪规定的  props的 key叫xxx 这里 emit的时候 就要 'update:xxx'
+
+        使用 v-model
+        原来 
+          <Switch :value="y" @input="y = $event"/>
+          context.emit('input', !props.value)
+        现在
+          <Switch v-model:value="y"/>
+          context.emit('update:value', !props.value)
+       */
+      context.emit('update:value', !props.value)
     }
     return { checked, toggle }
   },
