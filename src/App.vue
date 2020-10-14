@@ -1,10 +1,4 @@
 <template>
-<div>
-  导航栏
-  |
-  <router-link to="/">Aaa</router-link>
-  <router-link to="/xxx">Bbb</router-link>
-</div>
 <router-view></router-view>
 </template>
 
