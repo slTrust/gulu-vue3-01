@@ -10,7 +10,8 @@ import {
 export default {
   name: 'App',
   setup() {
-    const menuVisible = ref(false)
+    const width = document.documentElement.clientWidth;
+    const menuVisible = ref(width <= 500 ? false : true);
     provide('menuVisible', menuVisible) // app根组件设置一个值 ，其他组件通过 inject可以获得值
   }
 }
