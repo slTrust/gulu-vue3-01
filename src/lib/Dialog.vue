@@ -32,7 +32,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    // 默认点击遮罩关闭dialog
     closeOnClickOverlay: {
       type: Boolean,
       default: true,
@@ -62,7 +61,7 @@ export default {
       }
     }
     const cancel = () => {
-      context.emit('cancel')
+      props.cancel?.()
       close()
     }
     return {
