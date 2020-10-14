@@ -1,32 +1,29 @@
 <template>
-<div class="topnav">
-  <div class="logo">LOGO</div>
-  <ul class="menu">
-    <li>菜单1</li>
-    <li>菜单2</li>
-  </ul>
-  <span class="toggleAside" @click="toggleMenu"></span>
-</div>
+  <div class="topnav">
+    <div class="logo">LOGO</div>
+    <ul class="menu">
+      <li>菜单1</li>
+      <li>菜单2</li>
+    </ul>
+    <span class="toggleAside"
+          @click="toggleMenu"></span>
+  </div>
 </template>
 
 <script lang="ts">
-import {
-  inject,
-  Ref
-} from 'vue';
+import { inject, Ref } from 'vue'
 
 export default {
   setup() {
-    const menuVisible = inject < Ref < boolean >> ('menuVisible') // get
+    const menuVisible = inject<Ref<boolean>>('menuVisible') // get
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value
     }
 
     return {
-      toggleMenu
+      toggleMenu,
     }
-
-  }
+  },
 }
 </script>
 
@@ -43,24 +40,25 @@ export default {
   justify-content: center;
   align-items: center;
 
-  >.logo {
+  > .logo {
     max-width: 6em;
     margin-right: auto;
   }
 
-  >.menu {
+  > .menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
 
-    >li {
+    > li {
       margin: 0 1em;
     }
   }
 
-  >.toggleMenu {}
+  > .toggleMenu {
+  }
 
-  >.toggleAside {
+  > .toggleAside {
     display: none;
     width: 24px;
     height: 24px;
@@ -71,16 +69,16 @@ export default {
     transform: translateY(-50%);
   }
 
-  @media (max-width:500px) {
-    >.menu {
+  @media (max-width: 500px) {
+    > .menu {
       display: none;
     }
 
-    >.logo {
+    > .logo {
       margin: 0 auto;
     }
 
-    >.toggleAside {
+    > .toggleAside {
       display: inline-block;
     }
   }
