@@ -1,12 +1,16 @@
 <template>
   <div class="gulu-tabs">
-    <div class="gulu-tabs-nav">
+    <div class="gulu-tabs-nav"
+         ref="container">
       <div class="gulu-tabs-nav-item"
-           @click="select(t)"
-           :class="{selected:t=== selected}"
            v-for="(t,index) in titles"
+           :ref="el => { if (el) navItems[index] = el }"
+           @click="select(t)"
+           :class="{selected: t=== selected}"
            :key="index">{{t}}</div>
-      <div class="gulu-tabs-nav-indicator"></div>
+      <div class="gulu-tabs-nav-indicator"
+           ref="indicator"></div>
+
     </div>
     <div class="gulu-tabs-content">
       <component class="gulu-tabs-content-item"
@@ -19,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUpdated } from 'vue'
 import Tab from './Tab.vue'
 export default {
   props: {
@@ -28,6 +32,22 @@ export default {
     },
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([])
+    const indicator = ref<HTMLDivElement>(null)
+    const container = ref<HTMLDivElement>(null)
+    const x = () => {
+      const divs = navItems.value
+      const result = divs.filter((div) => div.classList.contains('selected'))[0]
+      console.log(result)
+      const { width } = result.getBoundingClientRect()
+      indicator.value.style.width = width + 'px'
+      const { left: left1 } = container.value.getBoundingClientRect()
+      const { left: left2 } = result.getBoundingClientRect()
+      const left = left2 - left1
+      indicator.value.style.left = left + 'px'
+    }
+    onMounted(x)
+    onUpdated(x)
     const defaults = context.slots.default()
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
@@ -48,7 +68,7 @@ export default {
       context.emit('update:selected', title)
     }
 
-    return { defaults, titles, current, select }
+    return { defaults, titles, current, select, navItems, indicator, container }
   },
 }
 </script>
@@ -80,6 +100,7 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 250ms;
     }
   }
   &-content {
