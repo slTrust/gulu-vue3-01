@@ -1,0 +1,9 @@
+.gulu-row{
+}
+.gulu-col{
+  background:#158EA3;
+  height: 50px;
+  &:nth-child(odd){
+    background: #A9CEC5;
+  }
+}
