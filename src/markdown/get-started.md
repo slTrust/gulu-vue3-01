@@ -20,7 +20,7 @@ import {Button, Tabs, Switch, Dialog} from "gulu-vue3-ui-001"
   </div>
 </template>
 <script>
-import {Button, Tabs, Switch, Dialog} from "king-ui"
+import {Button, Tabs, Switch, Dialog} from "gulu-vue3-ui-001"
 export default {
   components: {Button}
 }
