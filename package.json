@@ -1,6 +1,6 @@
 {
   "name": "gulu-vue3-ui-001",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "files": [
     "dist/lib/*"
   ],
